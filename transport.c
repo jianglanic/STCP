@@ -57,9 +57,9 @@ static int transport_recv_head(mysocket_t sd, void* headbuf, int headlen)//LAN
     //use ntohl ntohs decode related header
     ssize_t result = stcp_network_recv(sd, headbuf, sizeof(struct tcphdr), NULL);
     headbuf.th_seq = ntohs(head.th_seq);
-	headbuf.th_ack = ntohs(head.th_ack);
-	headbuf.th_win = ntohs(head.th_win);
-	return sizeof(headbuf);
+    headbuf.th_ack = ntohs(head.th_ack);
+    headbuf.th_win = ntohs(head.th_win);
+    return sizeof(headbuf);
 }
 /*
  */
@@ -74,8 +74,8 @@ static int transport_recv_data(mysocket_t sd, void* buf, int headlen)//LAN
 static void transport_send_data(mysocket_t sd, char* data, int len, context_t* ctx)//LAN
 {
     strncpy(send_buffer, data);
-	ctx.next_seq += len;
-	ssize_t result = stcp_network_send(sd, send_buffer, sizeof(send_buffer), NULL);
+    ctx.next_seq += len;
+    ssize_t result = stcp_network_send(sd, send_buffer, sizeof(send_buffer), NULL);
     //send real app data or stub data   
     
 }
@@ -90,9 +90,9 @@ static void transport_send_head(mysocket_t sd, int hflag, context_t* ctx)//LAN
     head.th_ack = ctx->next_seq;//ctx->next_seq;
     head.th_win = ;//???
     head.th_seq = htons(head.th_seq);
-	head.th_ack = htons(head.th_ack);
-	head.th_win = htons(head.th_win);
-	ssize_t result = stcp_network_send(sd, send_buffer, sizeof(struct tcphdr), NULL);
+    head.th_ack = htons(head.th_ack);
+    head.th_win = htons(head.th_win);
+    ssize_t result = stcp_network_send(sd, send_buffer, sizeof(struct tcphdr), NULL);
     //use htonl htons to codec
     
 }
