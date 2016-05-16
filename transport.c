@@ -63,7 +63,7 @@ static int transport_recv_head(mysocket_t sd, void* headbuf, int headlen)//LAN
 static int transport_recv_data(mysocket_t sd, void* buf, int headlen)//LAN
 {
     
-    
+    aaaaaa
     return -1;
 }
 /*
